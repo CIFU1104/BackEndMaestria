@@ -15,7 +15,7 @@ public class BookController {
     @Autowired
     private BookService service;
 
-    @GetMapping
+    @GetMapping(value="/get")
     public List<Book> getAllBooks() {
         return service.getAllBooks();
     }

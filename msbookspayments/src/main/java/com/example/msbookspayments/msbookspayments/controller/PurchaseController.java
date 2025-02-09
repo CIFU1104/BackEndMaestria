@@ -10,7 +10,7 @@ import com.example.msbookspayments.msbookspayments.service.PurchaseService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/purchases")
 public class PurchaseController {
@@ -18,9 +18,10 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/insert")
     public ResponseEntity<Purchase> createPurchase(@RequestBody PurchaseRequest request) {
+        System.out.println("Recibida solicitud POST con datos: " + request.toString());
         Purchase purchase = purchaseService.processPurchase(request);
         return new ResponseEntity<>(purchase, HttpStatus.CREATED);
     }

@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway
+
+  main:
+    web-application-type: reactive
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ms-books-catalogue
+          uri: lb://MSBOOKSCATALOGUE
+          predicates:
+            - Path=/books/**
+
+        - id: ms-books-payments
+          uri: lb://MSBOOKSPAYMENTS
+          predicates:
+            - Path=/purchases/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:65535/eureka/
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    '[org.springframework.cloud.gateway]': DEBUG  # Se corrigió el problema con los caracteres especiales

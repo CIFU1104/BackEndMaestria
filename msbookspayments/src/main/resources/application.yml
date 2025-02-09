@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: msbookspayments
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/books_payments_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: Maria0517*
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:65535/eureka/
+  instance:
+    prefer-ip-address: true
